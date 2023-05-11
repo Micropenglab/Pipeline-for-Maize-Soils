@@ -1,26 +1,5 @@
 #Data preparation
 #Read table
-library(data.table)
-library(vegan)
-#KEGG table input
-kegg_raw_new<-fread(input="J://shangzhuang/kegg/kegg_raw.csv", sep=',', header=TRUE) 
-#check colsums and select the value of minumun sum for rarefy
-colSums(kegg_raw_new[,7:30])
-#Rarefy
-kegg_table<-kegg_raw_new[,7:30]
-kegg_table_rarefy<-as.data.frame(t(rrarefy(t(kegg_otu),110000)))
-rarefy_kegg<-cbind(kegg_raw_new[,1:6],kegg_otu_rarefy)
-#check colsums after rarefy
-colSums(rarefy_kegg[,7:30])
-#MN2P2-1    MN2P2-2    MN2P2-3    MN2P2-4     N0P0-1     N0P0-2     N0P0-3     N0P0-4     N2P2-1     N2P2-2     N2P2-3 
-#110000     110000     110000     110000     110000     110000     110000     110000     110000     110000     110000 
-#N2P2-4 RS-MN2P2-1 RS-MN2P2-2 RS-MN2P2-3 RS-MN2P2-4   RSN0P0-1   RSN0P0-2   RSN0P0-3   RSN0P0-4  RS-N2P2-1  RS-N2P2-2 
-#110000     110000     110000     110000     110000     110000     110000     110000     110000     110000     110000 
-#RS-N2P2-3  RS-N2P2-4 
-#110000     110000 
-#write.csv(rarefy_kegg,file="J://shangzhuang/kegg/kegg_rarefy.csv")
-
-
 #Alpha diversity, PCoA based on CAZyme genes in bluk soil and rhizosphere
 cazyme<-read.csv("J://shangzhuang/cazyme/GH_table_rarefied.csv",row.names = 2)
 design<-read.csv("J://shangzhuang/design.csv")
